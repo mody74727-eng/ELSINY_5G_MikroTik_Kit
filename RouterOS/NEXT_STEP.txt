@@ -1,0 +1,7 @@
+بعد بناء الصورة ورفع ELSINY_5G_mikrotik.tar إلى WinBox Files، لا تنفذ أوامر إنشاء veth/NAT/Container قبل مراجعة:
+1) /disk print detail
+2) /ip firewall filter print detail
+3) /container config print
+4) /file print (للتأكد من مسار التخزين)
+
+ملاحظة: 127.14.14.1 لا يصلح كعنوان دخول من جهاز آخر. نحتاج عنوان إدارة حقيقي من شبكتك، مع إبقاء 7070 كمنفذ التطبيق.

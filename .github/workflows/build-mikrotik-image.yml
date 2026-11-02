@@ -1,0 +1,27 @@
+name: Build ELSINY_5G MikroTik image
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Build linux/amd64 image
+        run: |
+          docker build --platform linux/amd64 -t elsiny_5g:1.0 ./app
+          docker save -o ELSINY_5G_mikrotik.tar elsiny_5g:1.0
+
+      - name: Upload image archive
+        uses: actions/upload-artifact@v4
+        with:
+          name: ELSINY_5G_mikrotik
+          path: ELSINY_5G_mikrotik.tar
+          if-no-files-found: error
+          retention-days: 7
